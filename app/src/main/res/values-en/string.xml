@@ -6,4 +6,5 @@
     <string name="noConnection">No connection.</string>
     <string name="find">Search</string>
     <string name="yourFriends">Your friends:</string>
+    <string name="unknown">Unknown</string>
 </resources>
