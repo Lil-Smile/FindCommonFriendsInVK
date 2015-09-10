@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="authorize">Log in</string>
+    <string name="smthIsWrond">Something is wrong, try again.</string>
+    <string name="noConnection">No connection.</string>
+    <string name="find">Search</string>
+    <string name="yourFriends">Your friends:</string>
+</resources>
