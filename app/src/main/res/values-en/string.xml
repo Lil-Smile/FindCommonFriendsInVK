@@ -7,5 +7,14 @@
     <string name="find">Search</string>
     <string name="yourFriends">Your friends:</string>
     <string name="unknown">Unknown</string>
-    <string name="commonFriends">Common friends are:</string>
+    <string name="commonFriends">common friends:</string>
+
+    <string name="app_name">FindCommonFriends</string>
+
+    <integer name="com_vk_sdk_AppId">5063645</integer>
+
+    <string name="commonFriend">common friend:</string>
+    <string name="commonFriendsLessThan10">common friends:</string>
+    <string name="go">Go</string>
+    <string name="trynaGetFriends">We are tryna get your friends list, please, wait.</string>
 </resources>

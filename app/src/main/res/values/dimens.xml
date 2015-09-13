@@ -3,5 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="lvHeight">450dp</dimen>
+    <dimen name="lvHeightLand">250dp</dimen>
     <dimen name="marginOneItem">15dp</dimen>
+    <dimen name="textSize">20sp</dimen>
 </resources>

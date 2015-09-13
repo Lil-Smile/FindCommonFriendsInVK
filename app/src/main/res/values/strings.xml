@@ -14,5 +14,8 @@
     <string name="unknown">Неизвестно</string>
     <string name="commonFriends">общих друзей:</string>
     <string name="commonFriend">общий друг:</string>
-    <string name="commonFriendsLessThan10">общих друга</string>
+    <string name="commonFriendsLessThan10">общих друга:</string>
+    <string name="go">Далее</string>
+    <string name="id">id:</string>
+    <string name="trynaGetFriends">Находимся в процессе получения списка ваших друзей, пожалуйста, подождите.</string>
 </resources>

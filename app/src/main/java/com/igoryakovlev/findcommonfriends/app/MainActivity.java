@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
+import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
@@ -20,8 +21,10 @@ import com.vk.sdk.api.VKError;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     Button buttonAuthorize;
+    Button buttonGo;
 
     static String FRIENDS = "friends";
+    static String NO_HTTPS = VKScope.NOHTTPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         buttonAuthorize = (Button)findViewById(R.id.buttonAuthorize);
         buttonAuthorize.setOnClickListener(this);
+
+        buttonGo = (Button)findViewById(R.id.buttonGo);
+        buttonGo.setOnClickListener(this);
 
         //autorize+start
         if (VKSdk.wakeUpSession(this))
@@ -73,12 +79,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
             {
                 if (isNetworkOnline(this))
                 {
-                    String[] scope = {FRIENDS};
+                    String[] scope = {FRIENDS, NO_HTTPS};
                     VKSdk.login(this, scope);
                 } else
                 {
                     Toast.makeText(this,getString(R.string.noConnection),Toast.LENGTH_SHORT).show();
                 }
+                break;
+            }
+            case R.id.buttonGo:
+            {
+                Intent intent = new Intent(MainActivity.this,FindFromFriends.class);
+                startActivity(intent);
                 break;
             }
         }
@@ -107,18 +119,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public boolean isNetworkOnline(Context context) {
         boolean status = false;
-        //Log.d(TAG, "start");
         try {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getNetworkInfo(0); //mobile
             if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
                 status = true;
-                //Log.d(TAG,"try mobile"+netInfo);
             } else {
                 netInfo = cm.getNetworkInfo(1); //wi-fi
                 if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
                     status = true;
-                    //Log.d(TAG,"try wi-fi"+netInfo);
                 }
 
             }

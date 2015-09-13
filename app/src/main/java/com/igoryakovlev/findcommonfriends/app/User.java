@@ -11,10 +11,10 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String name;
     private String surname;
-    private Bitmap photo;
+    private String photo;
     private String id;
 
-    public User(String name, String surname, Bitmap photo, String id) {
+    public User(String name, String surname, String photo, String id) {
         this.photo = photo;
         this.id = id;
         this.name = name;
@@ -45,11 +45,11 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
-    public Bitmap getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Bitmap photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
