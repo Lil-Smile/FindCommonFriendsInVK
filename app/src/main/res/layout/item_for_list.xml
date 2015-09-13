@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageViewForPhoto"/>
+
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        <TextView
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/unknown"
-                android:id="@+id/tvNameAndSurname"/>
+                android:layout_height="wrap_content">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unknown"
+                    android:id="@+id/tvName"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/unknown"
+                      android:id="@+id/tvSurname"
+                      android:layout_marginLeft="@dimen/marginOneItem"
+                    />
+        </LinearLayout>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/unknown"
                 android:id="@+id/tvID"/>
     </LinearLayout>
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBoxOfFriend"
+            android:focusable="false"
+            android:enabled="false"/>
 </LinearLayout>

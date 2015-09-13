@@ -1,22 +1,33 @@
 package com.igoryakovlev.findcommonfriends.app;
 
-import android.media.Image;
+import android.graphics.Bitmap;
+
+
+import java.io.Serializable;
 
 /**
  * Created by Smile on 10.09.15.
  */
-public class User {
+public class User implements Serializable {
     private String name;
     private String surname;
-    private Image photo;
+    private Bitmap photo;
     private String id;
 
-    public User(String name, String surname, Image photo, String id) {
+    public User(String name, String surname, Bitmap photo, String id) {
         this.photo = photo;
         this.id = id;
         this.name = name;
         this.surname = surname;
     }
+
+    public User(String name, String surname, String id)
+    {
+        this.name = name;
+        this.id = id;
+        this.surname = surname;
+    }
+
 
     public String getName() {
         return name;
@@ -34,11 +45,11 @@ public class User {
         this.surname = surname;
     }
 
-    public Image getPhoto() {
+    public Bitmap getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Image photo) {
+    public void setPhoto(Bitmap photo) {
         this.photo = photo;
     }
 
@@ -49,4 +60,10 @@ public class User {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String toString()
+    {
+        return this.id+", "+this.name+", "+this.surname;
+    }
+
 }

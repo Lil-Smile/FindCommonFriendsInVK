@@ -13,18 +13,19 @@
               android:id="@+id/tvYourFriends"
               android:layout_centerHorizontal="true"  />
 
-    <fragment android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:name="android.app.ListFragment"
-              android:id="@+id/fragmentMyFriendList"
+    <ListView android:layout_width="wrap_content"
+              android:layout_height="@dimen/lvHeight"
+              android:id="@+id/lvMyFriendsList"
               android:layout_below="@+id/tvYourFriends"
-              tools:layout="@layout/select_dialog_multichoice_material"/>
+              android:choiceMode="none">
+
+    </ListView>
 
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:id="@+id/buttonFindCommonFromMyFriends"
             android:text="@string/find"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/fragmentMyFriendList"/>
+            android:layout_below="@+id/lvMyFriendsList"/>
     <ProgressBar
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"

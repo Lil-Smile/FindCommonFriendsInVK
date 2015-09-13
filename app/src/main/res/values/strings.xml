@@ -12,4 +12,7 @@
     <string name="find">Искать</string>
     <string name="yourFriends">Ваши друзья:</string>
     <string name="unknown">Неизвестно</string>
+    <string name="commonFriends">общих друзей:</string>
+    <string name="commonFriend">общий друг:</string>
+    <string name="commonFriendsLessThan10">общих друга</string>
 </resources>
