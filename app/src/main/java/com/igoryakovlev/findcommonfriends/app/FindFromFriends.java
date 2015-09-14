@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ public class FindFromFriends extends Activity implements View.OnClickListener{
     private static String CHECKED = "checked";
     private static String CURRENT_DATA = "current data";
     private static String COMMON_OR_NOT = "common or not"; //common - true
+
+    private static String VK_LINK = "https://vk.com/id";
 
 
     private static int SIZE_OF_LIST=0;
@@ -90,6 +93,18 @@ public class FindFromFriends extends Activity implements View.OnClickListener{
                 }
                 data.get((int) id).put(CHECKED, !flag);
                 simpleAdapter.notifyDataSetChanged();
+            }
+        });
+
+        lvMyFriends.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String url = VK_LINK+currentDataWithInfo.get((int)l).getId();
+                Uri adress = Uri.parse(url);
+                Intent openLink = new Intent(Intent.ACTION_VIEW,adress);
+                startActivity(openLink);
+                return false;
             }
         });
 
