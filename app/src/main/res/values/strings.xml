@@ -7,6 +7,8 @@
     <string name="action_settings">Settings</string>
     <string name="authorize">Авторизоваться</string>
     <string name="smthIsWrond">Что-то пошло не так, попробуйте еще раз.</string>
+    <string name="smthIsWrongWeTryna">Что-то пошло не так, пробуем еще раз</string>
+    <string name="tryOnceAgain">Что-то не получилось, попробуйте запустить приложение еще раз</string>
     <string name="title_activity_find_from_friends">FindFromFriends</string>
     <string name="noConnection">Нет соединения.</string>
     <string name="find">Искать</string>
@@ -18,4 +20,5 @@
     <string name="go">Далее</string>
     <string name="id">id:</string>
     <string name="trynaGetFriends">Находимся в процессе получения списка ваших друзей, пожалуйста, подождите.</string>
+    <string name="notEnoughFriends">Слишком мало человек для поиска, добавьте еще.</string>
 </resources>

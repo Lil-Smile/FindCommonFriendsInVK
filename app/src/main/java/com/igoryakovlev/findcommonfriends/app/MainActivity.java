@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } else
         {
             //todo: cannot wake up
+            Toast.makeText(this,getString(R.string.smthIsWrond),Toast.LENGTH_LONG).show();
         }
     }
 

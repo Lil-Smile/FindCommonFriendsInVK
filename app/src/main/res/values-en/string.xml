@@ -17,4 +17,10 @@
     <string name="commonFriendsLessThan10">common friends:</string>
     <string name="go">Go</string>
     <string name="trynaGetFriends">We are tryna get your friends list, please, wait.</string>
+
+
+    <string name="smthIsWrongWeTryna">Something is wrong, we are tryna do it again</string>
+    <string name="tryOnceAgain">Sorry, something is wrong, please, try to launch app again later</string>
+    <string name="id">id:</string>
+    <string name="notEnoughFriends">Not enough friends for search, try add some more</string>
 </resources>

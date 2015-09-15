@@ -234,10 +234,11 @@ public class FindFromFriends extends Activity implements View.OnClickListener{
     public void onClick(View view) {
 
         dataOfIds = new ArrayList<ArrayList<User>>();
-        lvMyFriends.setVisibility(View.INVISIBLE);
-        progressBarMyFriendsList.setVisibility(View.VISIBLE);
+
         if (dataForRequest.size()>1)
         {
+            lvMyFriends.setVisibility(View.INVISIBLE);
+            progressBarMyFriendsList.setVisibility(View.VISIBLE);
             final ArrayList<Integer> commonFriendsId = new ArrayList<Integer>();
             for (int i = 0; i<dataForRequest.size(); i++)
             {
@@ -287,6 +288,9 @@ public class FindFromFriends extends Activity implements View.OnClickListener{
             }
 
 
+        }  else
+        {
+            Toast.makeText(getApplicationContext(),getString(R.string.notEnoughFriends),Toast.LENGTH_LONG).show();
         }
 
     }
@@ -410,10 +414,23 @@ public class FindFromFriends extends Activity implements View.OnClickListener{
             final boolean[] trigger = {false};
             VKRequest request = new VKRequest("friends.get", VKParameters.from(VKApiConst.FIELDS,"id,first_name,last_name,photo_50"));
             request.secure=false;
+            request.attempts=3;
             request.executeWithListener(new VKRequest.VKRequestListener() {
+                @Override
+                public void attemptFailed(VKRequest request, int attemptNumber, int totalAttempts) {
+                    if (attemptNumber<totalAttempts)
+                    {
+                        Toast.makeText(getApplicationContext(),getString(R.string.smthIsWrongWeTryna),Toast.LENGTH_LONG).show();
+                    } else
+                    {
+                        Toast.makeText(getApplicationContext(),getString(R.string.tryOnceAgain),Toast.LENGTH_LONG).show();
+                        trigger[0]=true;
+                    }
+                }
                 @Override
                 public void onComplete(VKResponse response) {
                     super.onComplete(response);
+                    Toast.makeText(getApplicationContext(),"Получено, работаем",Toast.LENGTH_SHORT).show();
                     JSONObject jsonObject = response.json;
                     try {
                         JSONObject jsonObject1 = jsonObject.getJSONObject(RESPONSE);
@@ -455,6 +472,13 @@ public class FindFromFriends extends Activity implements View.OnClickListener{
         @Override
         protected void onPostExecute(ArrayList<User> inData)
         {
+            if (inData.size()==0)
+            {
+                progressBarMyFriendsList.setVisibility(View.INVISIBLE);
+                tvYourFriends.setVisibility(View.VISIBLE);
+                buttonFindFromMyFriends.setVisibility(View.VISIBLE);
+                return;
+            }
             currentDataWithInfo = inData;
             data = new ArrayList<HashMap<String, Object>>();
             for (int i = 0; i<inData.size(); i++)
