@@ -3,19 +3,23 @@ package com.igoryakovlev.findcommonfriends.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
+import com.vk.sdk.util.VKUtil;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -26,10 +30,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
     static String FRIENDS = "friends";
     static String NO_HTTPS = VKScope.NOHTTPS;
 
+    static boolean trigger = false;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //String[] fingerprints = VKUtil.getCertificateFingerprint(this,this.getPackageName());
+        //Log.d("finger",fingerprints[0]);
+        //EditText editText = (EditText)findViewById(R.id.editTexthui);
+        //editText.setText(fingerprints[0]);
+
+        sharedPreferences = getSharedPreferences("FCF",MODE_PRIVATE);
+        trigger = sharedPreferences.getBoolean("trigger",false);
 
         buttonAuthorize = (Button)findViewById(R.id.buttonAuthorize);
         buttonAuthorize.setOnClickListener(this);
@@ -44,8 +59,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         } else
         {
-            //todo: cannot wake up
-            Toast.makeText(this,getString(R.string.smthIsWrond),Toast.LENGTH_LONG).show();
+            if (!sharedPreferences.getBoolean("authorized",false))
+            {
+                Toast.makeText(this,getString(R.string.smthIsWrond),Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -90,8 +107,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
             case R.id.buttonGo:
             {
-                Intent intent = new Intent(MainActivity.this,FindFromFriends.class);
-                startActivity(intent);
+                if (trigger)
+                {
+                    Intent intent = new Intent(MainActivity.this,FindFromFriends.class);
+                    startActivity(intent);
+                }
                 break;
             }
         }
@@ -104,12 +124,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
             @Override
             public void onResult(VKAccessToken res) {
                 Intent intent = new Intent(MainActivity.this,FindFromFriends.class);
+                trigger=true;
+                sharedPreferences.edit().putBoolean("trigger",true).commit();
+                sharedPreferences.edit().putBoolean("authorized",true).commit();
                 startActivity(intent);
             }
 
             @Override
             public void onError(VKError error) {
                 Toast.makeText(getApplicationContext(),getString(R.string.smthIsWrond),Toast.LENGTH_LONG).show();
+                sharedPreferences.edit().putBoolean("trigger", false).commit();
+
             }
         }))
         {
